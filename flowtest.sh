@@ -14,6 +14,27 @@
 #   the coding of the branch. Pull-requests are the perfect tool there.
 #
 ###############################################################################
+# Git Flow Usage
+#
+# Merging a non-master branch to mater:
+#     git checkout master
+#     git merge --no-ff -m "merge BRANCH to master" BRANCH
+#     git push
+#
+# Delete a branch both locally and remotely
+#     git branch -d BRANCH
+#     git tag -a BRANCH -m "tagging to BRANCH"
+#     git push origin BRANCH
+#
+# Merge a tracked branch from master with fast-foward
+#     git fetch -p origin
+#     git merge -m "merge master to BRANCH" master
+#
+# Merge an untracked branch from master with rebase
+#     git fetch -p origin
+#     git rebase master
+#
+###############################################################################
 # Lessons learned:
 # * Always have SourceTree (or any equivalent) running on your repos to check
 #   the visual history before you push anything! Keeping a clean and easy to
@@ -27,15 +48,15 @@
 #   "git pull --rebase origin master -p" instead since a local branch base can
 #   be changed without impact for anybody and rebasing will actually have a
 #   cleaner history when you later track it.
-# * When a branch has been merged and you know it will not be reused, push,
-#   delete branch, create a tag with the same name, and push; this helps
+# * When a branch has been merged and you know it will not be reused, delete
+#   that branch, create a tag with the same name, and push; this helps
 #   having less branches cluttering the CLI/GUI.
 #   Tagging shall be done AFTER the branch has been deleted (since tagging with
 #   a name that is a branch already would fail).
 #   Do not use "git push origin --delete [branch]" to push and delete; when
 #   doing so the branch is deleted but still hanging locally somewhere, causing
 #   "git push origin [tagname]" to fail is tag name is the same as the branch.
-# * Tag with '-a' option y default.
+# * Tag with '-a' option by default.
 # * Do not use "git push --tags" on a day-today basis; this would push old
 #   un-deleted local tags to the repos when you don't want this to happen.
 # * When you are about to push commits to a tracked branch a "git rebase -i"
